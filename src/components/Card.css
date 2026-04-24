@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
+
+.Card {
+  position: relative;
+  background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 50%, #161b26 100%);
+  border: 1px solid rgba(var(--crewmate-color-rgb, 74, 158, 255), 0.3);
+  border-radius: 4px;
+  padding: 28px 24px;
+  width: 240px;
+  color: #c9d8f0;
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* Dynamic back glow using the crewmate's color */
+  box-shadow:
+    0 0 30px -5px var(--crewmate-color, #4a9eff),
+    0 0 60px -20px var(--crewmate-color, #4a9eff),
+    inset 0 0 40px -30px var(--crewmate-color, #4a9eff);
+}
+
+.Card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 110%,
+    color-mix(in srgb, var(--crewmate-color, #4a9eff) 20%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Top edge shimmer in crewmate color */
+.Card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--crewmate-color, #4a9eff),
+    transparent
+  );
+}
+
+.Card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 50px -5px var(--crewmate-color, #4a9eff),
+    0 0 100px -20px var(--crewmate-color, #4a9eff),
+    inset 0 0 60px -20px var(--crewmate-color, #4a9eff);
+}
+
+.crewmate-img {
+  display: block;
+  margin: 0 auto 16px;
+  width: 70px;
+  filter:
+    drop-shadow(0 0 10px var(--crewmate-color, #4a9eff))
+    brightness(0.85)
+    sepia(1)
+    hue-rotate(var(--crewmate-hue, 200deg))
+    saturate(3);
+}
+
+.name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8f0ff;
+  text-align: center;
+  margin: 0 0 16px;
+  text-shadow: 0 0 12px var(--crewmate-color, #4a9eff);
+}
+
+.speed,
+.color {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a9abf;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.speed::before {
+  content: '▸';
+  color: var(--crewmate-color, #4a9eff);
+  font-size: 0.65rem;
+}
+
+.color::before {
+  content: '▸';
+  color: var(--crewmate-color, #4a9eff);
+  font-size: 0.65rem;
+}
+
+.edit-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: 1px solid var(--crewmate-color, #4a9eff);
+  color: var(--crewmate-color, #4a9eff);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-button:hover {
+  background: color-mix(in srgb, var(--crewmate-color, #4a9eff) 15%, transparent);
+  box-shadow: 0 0 16px var(--crewmate-color, #4a9eff);
+}
+
+.edit-button:active {
+  transform: scale(0.98);
+}
+
+a {
+  text-decoration: none;
+}
