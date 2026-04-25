@@ -50,19 +50,19 @@ const CreateCrewmate = () => {
                             <button
                                 key={color}
                                 type="button"
-                                className={`color-swatch ${post.color === color ? 'selected' : ''}`}
+                                className={`color-swatch ${Crewmate.color === color ? 'selected' : ''}`}
                                 style={{ '--swatch-color': color }}
                                 onClick={() => handleColorSelect(color)}
                                 title={color}
                             >
-                                {post.color === color && (
+                                {Crewmate.color === color && (
                                     <span className="checkmark">✓</span>
                                 )}
                             </button>
                         ))}
                     </div>
-                    {post.color && (
-                        <p className="color-label">Selected: <span style={{ color: post.color === 'white' || post.color === 'yellow' ? '#aaa' : post.color }}>{post.color}</span></p>
+                    {Crewmate.color && (
+                        <p className="color-label">Selected: <span style={{ color: Crewmate.color === 'white' || Crewmate.color === 'yellow' ? '#aaa' : Crewmate.color }}>{Crewmate.color}</span></p>
                     )}
                 </div>
 

@@ -1,13 +1,25 @@
 import { useState } from 'react'
-import './CreatePost.css'
+import './CreateCrewmate.css'
 import { supabase } from '../client'
 
 const COLORS = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "white", "black", "brown", "cyan", "lime"]
 
-const CreatePost = () => {
+const CreateCrewmate = () => {
 
     const {id} = useParams()
     const [Crewmate, setCrewmate] = useState({ name: "", speed: "", color: "" })
+
+    useEffect(() => {
+        const fetchCrewmate = async () => {
+            const { data } = await supabase
+                .from('Crewmmates')
+                .select()
+                .eq('id', id)
+                .single()
+            if (data) setCrewmate(data)
+        }
+        fetchCrewmate()
+    }, [id])
 
     const updateCrewmate = async (event) => {
         event.preventDefault();
@@ -42,11 +54,11 @@ const CreatePost = () => {
 
     return (
         <div className="create-container">
-            <h1 className="create-title">Create Crewmate</h1>
+            <h1 className="create-title">Edit Crewmate</h1>
             <form className="create-form">
 
                 <div className="form-group">
-                    <label htmlFor="Name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter crewmate name" onChange={handleChange} />
                 </div>
 
@@ -62,19 +74,19 @@ const CreatePost = () => {
                             <button
                                 key={color}
                                 type="button"
-                                className={`color-swatch ${post.color === color ? 'selected' : ''}`}
+                                className={`color-swatch ${Crewmate.color === color ? 'selected' : ''}`}
                                 style={{ '--swatch-color': color }}
                                 onClick={() => handleColorSelect(color)}
                                 title={color}
                             >
-                                {post.color === color && (
+                                {Crewmate.color === color && (
                                     <span className="checkmark">✓</span>
                                 )}
                             </button>
                         ))}
                     </div>
-                    {post.color && (
-                        <p className="color-label">Selected: <span style={{ color: post.color === 'white' || post.color === 'yellow' ? '#aaa' : post.color }}>{post.color}</span></p>
+                    {Crewmate.color && (
+                        <p className="color-label">Selected: <span style={{ color: Crewmate.color === 'white' || Crewmate.color === 'yellow' ? '#aaa' : Crewmate.color }}>{Crewmate.color}</span></p>
                     )}
                 </div>
 
@@ -85,4 +97,4 @@ const CreatePost = () => {
     )
 }
 
-export default CreatePost
+export default CreateCrewmate
