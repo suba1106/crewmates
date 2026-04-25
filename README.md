@@ -1,10 +1,10 @@
-# Web Development Project 7 - _Name of App Here_
+# Web Development Project 7 - Crewmates
 
-Submitted by: **Your Name Here**
+Submitted by: **Suwaiba**
 
 This web app: **insert description**
 
-Time spent: **X** hours spent in total
+Time spent: **5** hours spent in total
 
 ## Required Features
 
@@ -47,7 +47,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='./assets/project7.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 
