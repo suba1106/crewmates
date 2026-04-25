@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './CreateCrewmate.css'
 import { supabase } from '../client'
 
 const COLORS = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "white", "black", "brown", "cyan", "lime"]

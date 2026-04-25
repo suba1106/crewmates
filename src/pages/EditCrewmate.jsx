@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import './CreateCrewmate.css'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { supabase } from '../client'
 
 const COLORS = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "white", "black", "brown", "cyan", "lime"]
 
-const CreateCrewmate = () => {
-
-    const {id} = useParams()
+const EditCrewmate = () => {
+    const { id } = useParams()
     const [Crewmate, setCrewmate] = useState({ name: "", speed: "", color: "" })
 
     useEffect(() => {
@@ -22,25 +21,21 @@ const CreateCrewmate = () => {
     }, [id])
 
     const updateCrewmate = async (event) => {
-        event.preventDefault();
-
+        event.preventDefault()
         await supabase
             .from('Crewmmates')
-            .insert({ name: Crewmate.name, speed: Crewmate.speed, color: Crewmate.color })
-            .select();
-
-        window.location = "/";
+            .update({ name: Crewmate.name, speed: Crewmate.speed, color: Crewmate.color })
+            .eq('id', id)
+        window.location = "/"
     }
 
     const deleteCrewmate = async (event) => {
-        event.preventDefault();
-
+        event.preventDefault()
         await supabase
             .from('Crewmmates')
             .delete()
-            .eq('id', id); 
-
-        window.location = "/";
+            .eq('id', id)
+        window.location = "/"
     }
 
     const handleChange = (event) => {
@@ -56,17 +51,22 @@ const CreateCrewmate = () => {
         <div className="create-container">
             <h1 className="create-title">Edit Crewmate</h1>
             <form className="create-form">
-
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter crewmate name" onChange={handleChange} />
+                    <input
+                        type="text" id="name" name="name"
+                        value={Crewmate.name}
+                        onChange={handleChange}
+                    />
                 </div>
-
                 <div className="form-group">
                     <label htmlFor="speed">Speed (mph)</label>
-                    <input type="number" id="speed" name="speed" placeholder="e.g. 120" onChange={handleChange} />
+                    <input
+                        type="number" id="speed" name="speed"
+                        value={Crewmate.speed}
+                        onChange={handleChange}
+                    />
                 </div>
-
                 <div className="form-group">
                     <label>Color</label>
                     <div className="color-grid">
@@ -79,22 +79,19 @@ const CreateCrewmate = () => {
                                 onClick={() => handleColorSelect(color)}
                                 title={color}
                             >
-                                {Crewmate.color === color && (
-                                    <span className="checkmark">✓</span>
-                                )}
+                                {Crewmate.color === color && <span className="checkmark">✓</span>}
                             </button>
                         ))}
                     </div>
                     {Crewmate.color && (
-                        <p className="color-label">Selected: <span style={{ color: Crewmate.color === 'white' || Crewmate.color === 'yellow' ? '#aaa' : Crewmate.color }}>{Crewmate.color}</span></p>
+                        <p className="color-label">Selected: <span style={{ color: ['white','yellow'].includes(Crewmate.color) ? '#aaa' : Crewmate.color }}>{Crewmate.color}</span></p>
                     )}
                 </div>
-
-                <button className="update-btn" onClick={updateCrewmate}>Update Crewmate</button>
-                <button className='delete-btn' onClick={deleteCrewmate}>Delete Crewmate</button>
+                <button className="submit-btn" onClick={updateCrewmate}>Update Crewmate ▸</button>
+                <button className="delete-btn" onClick={deleteCrewmate}>Delete Crewmate</button>
             </form>
         </div>
     )
 }
 
-export default CreateCrewmate
+export default EditCrewmate

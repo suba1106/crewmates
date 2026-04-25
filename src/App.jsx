@@ -1,5 +1,4 @@
 import './App.css'
-import React from 'react'
 import { useRoutes, Link } from 'react-router-dom'
 import ViewCrewmates from './pages/ViewCrewmates'
 import CreateCrewmate from './pages/CreateCrewmate'
