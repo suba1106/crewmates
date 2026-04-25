@@ -11,7 +11,7 @@ const ViewCrewmates = () => {
             const { data } = await supabase
                 .from('crewmate')
                 .select()
-                .order('created_at', { ascending: true })
+                .order('created_at', { ascending: false })
             if (data) setCrewmates(data)
         }
         fetchCrewmates()
@@ -19,6 +19,22 @@ const ViewCrewmates = () => {
 
     return (
         <div>
+            <div className = 'navbar'>
+                <Link to="/" className='heading'>
+                    <h1>Crewmate</h1>
+                </Link>
+                <div className='navbuttons'>
+                    <Link to='/'>
+                        <button className='submit-btn'>Back to Base</button>
+                    </Link>
+                    <Link to="/crew">
+                        <button className="submit-btn">View Crew</button>
+                    </Link>
+                    <Link to="/create">
+                        <button className="submit-btn">+ New Crewmate</button>
+                    </Link>
+                </div>
+            </div>           
             <nav style={{ padding: '20px', textAlign: 'center' }}>
                 <Link to="/create">
                     <button className="submit-btn">+ New Crewmate</button>

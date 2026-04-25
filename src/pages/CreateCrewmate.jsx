@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../client'
+import './CreateCrewmate.css'
+import { Link } from 'react-router-dom'
 
 const COLORS = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "white", "black", "brown", "cyan", "lime"]
 
@@ -15,7 +17,7 @@ const CreateCrewmate = () => {
             .insert({ name: Crewmate.name, speed: Crewmate.speed, color: Crewmate.color })
             .select();
 
-        window.location = "/";
+        window.location = "/crew";
     }
 
     const handleChange = (event) => {
@@ -29,6 +31,9 @@ const CreateCrewmate = () => {
 
     return (
         <div className="create-container">
+            <Link to="/crew">
+                <button className="back-btn">← Back to Crew</button>
+            </Link>
             <h1 className="create-title">Create Crewmate</h1>
             <form className="create-form">
 
@@ -65,7 +70,7 @@ const CreateCrewmate = () => {
                     )}
                 </div>
 
-                <button className="submit-btn" onClick={createCrewmate}>Launch Crewmate ▸</button>
+                <button className="submit-btn" onClick={createCrewmate}>Launch Crewmate</button>
             </form>
         </div>
     )

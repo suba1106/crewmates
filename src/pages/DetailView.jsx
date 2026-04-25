@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { supabase } from '../client'
+import crewIMg from '../components/crewmate.svg'
 
 const DetailView = () => {
     const { id } = useParams()
@@ -21,10 +22,28 @@ const DetailView = () => {
     if (!crewmate) return <p style={{ color: '#c9d8f0', textAlign: 'center', marginTop: '80px' }}>Loading...</p>
 
     return (
+        <div>
+        <div className = 'navbar'>
+                <Link to="/" className='heading'>
+                    <h1>Crewmate</h1>
+                </Link>
+                <div className='navbuttons'>
+                    <Link to='/'>
+                        <button className='submit-btn'>Back to Base</button>
+                    </Link>
+                    <Link to="/crew">
+                        <button className="submit-btn">View Crew</button>
+                    </Link>
+                    <Link to="/create">
+                        <button className="submit-btn">+ New Crewmate</button>
+                    </Link>
+                </div>
+            </div>
         <div className="detail-container" style={{ '--crewmate-color': crewmate.color }}>
+
             <div className="detail-card">
                 <div className="detail-header">
-                    <img className="detail-img" src="/crewmate.svg" alt="crewmate" />
+                    <img className="detail-img" src={crewIMg} alt="crewmate" />
                     <h1 className="detail-name">{crewmate.name}</h1>
                 </div>
 
@@ -44,16 +63,8 @@ const DetailView = () => {
                         <span className="stat-value">#{crewmate.id}</span>
                     </div>
                 </div>
-
-                <div className="detail-actions">
-                    <Link to={`/EditCrewmates/${crewmate.id}`}>
-                        <button className="submit-btn">Edit Crewmate</button>
-                    </Link>
-                    <Link to="/">
-                        <button className="back-btn">← Back to Crew</button>
-                    </Link>
-                </div>
             </div>
+        </div>
         </div>
     )
 }

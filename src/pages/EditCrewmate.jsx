@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { supabase } from '../client'
-
+import './CreateCrewmate.css'
 const COLORS = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "white", "black", "brown", "cyan", "lime"]
 
 const EditCrewmate = () => {
@@ -26,7 +27,7 @@ const EditCrewmate = () => {
             .from('crewmate')
             .update({ name: Crewmate.name, speed: Crewmate.speed, color: Crewmate.color })
             .eq('id', id)
-        window.location = "/"
+        window.location = "/crew"
     }
 
     const deleteCrewmate = async (event) => {
@@ -35,7 +36,7 @@ const EditCrewmate = () => {
             .from('crewmate')
             .delete()
             .eq('id', id)
-        window.location = "/"
+        window.location = "/crew"
     }
 
     const handleChange = (event) => {
@@ -49,6 +50,9 @@ const EditCrewmate = () => {
 
     return (
         <div className="create-container">
+            <Link to="/crew">
+                <button className="back-btn">← Back to Crew</button>
+            </Link>
             <h1 className="create-title">Edit Crewmate</h1>
             <form className="create-form">
                 <div className="form-group">
@@ -87,7 +91,7 @@ const EditCrewmate = () => {
                         <p className="color-label">Selected: <span style={{ color: ['white','yellow'].includes(Crewmate.color) ? '#aaa' : Crewmate.color }}>{Crewmate.color}</span></p>
                     )}
                 </div>
-                <button className="submit-btn" onClick={updateCrewmate}>Update Crewmate ▸</button>
+                <button className="submit-btn" onClick={updateCrewmate}>Update Crewmate</button>
                 <button className="delete-btn" onClick={deleteCrewmate}>Delete Crewmate</button>
             </form>
         </div>

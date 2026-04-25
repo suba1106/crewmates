@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600&display=swap');
+
+.home-page {
+  min-height: 100vh;
+  background: #060a12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+}
+
+.crewmate h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #e8f0ff;
+  margin: 0 0 18px;
+  text-shadow:
+    0 0 30px rgba(74, 158, 255, 0.4),
+    0 0 80px rgba(74, 158, 255, 0.15);
+}
+
+.crewmate p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #5a7a9a;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.crewmates-img-container {
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.15s ease both;
+  padding: 24px;
+  background: linear-gradient(135deg, #0d1825 0%, #060f1c 100%);
+  border: 1px solid #1a3a5c;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.crewmates-img-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #4a9eff, transparent);
+}
+
+
+.crewmates-img {
+  display: block;
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 16px rgba(74, 158, 255, 0.3));
+}
+
+.home-page .submit-btn {
+  position: relative;
+  z-index: 1;
+  padding: 14px 52px;
+  background: transparent;
+  border: 1px solid #4a9eff;
+  color: #4a9eff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.home-page .submit-btn:hover {
+  background: rgba(74, 158, 255, 0.12);
+  box-shadow: 0 0 30px rgba(74, 158, 255, 0.4), 0 0 60px rgba(74, 158, 255, 0.15);
+  color: #8dc4ff;
+}
+
+
+a {
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .crewmates-img {
+    max-width: 260px;
+  }
+  .home-page .submit-btn {
+    padding: 12px 36px;
+  }
+}
