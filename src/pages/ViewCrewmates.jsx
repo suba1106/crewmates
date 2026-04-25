@@ -1,40 +1,44 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Card from '../components/Card'
 import { supabase } from '../client'
 
-const ViewCrewmates = (props) => {
-
-    const [Crewmate, setCrewmates] = useState([])
+const ViewCrewmates = () => {
+    const [crewmates, setCrewmates] = useState([])
 
     useEffect(() => {
-        setPosts(props.data)
         const fetchCrewmates = async () => {
-            const {data} = await supabase
-                .from('Crewmmates')
+            const { data } = await supabase
+                .from('crewmate')
                 .select()
                 .order('created_at', { ascending: true })
-
-            setCrewmates(data)
+            if (data) setCrewmates(data)
         }
-        fetchCrewmates();
-    }, [props])
-    
+        fetchCrewmates()
+    }, [])
+
     return (
-        <div className="ViewCrewmates">
-            {
-                Crewmate ?
-                [...Crewmate]
-                .sort((a, b) => a.id - b.id)
-                .map((Crewmate, index) => 
-                    <Card
-                        id={post.id} 
-                        name={post.name}
-                        speed={post.speed}
-                        color={post.color}
-                    />
-                ) : <h2>{'You Have Not Created Any Crewmates Yet 😞'}</h2>
-            }
-        </div>  
+        <div>
+            <nav style={{ padding: '20px', textAlign: 'center' }}>
+                <Link to="/create">
+                    <button className="submit-btn">+ New Crewmate</button>
+                </Link>
+            </nav>
+            <div className="ViewCrewmates" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', padding: '20px' }}>
+                {crewmates.length > 0
+                    ? crewmates.map((crewmate) =>
+                        <Card
+                            key={crewmate.id}
+                            id={crewmate.id}
+                            name={crewmate.name}
+                            speed={crewmate.speed}
+                            color={crewmate.color}
+                        />
+                    )
+                    : <h2>You Have Not Created Any Crewmates Yet 😞</h2>
+                }
+            </div>
+        </div>
     )
 }
 

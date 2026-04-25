@@ -11,7 +11,7 @@ const EditCrewmate = () => {
     useEffect(() => {
         const fetchCrewmate = async () => {
             const { data } = await supabase
-                .from('Crewmmates')
+                .from('crewmate')
                 .select()
                 .eq('id', id)
                 .single()
@@ -23,7 +23,7 @@ const EditCrewmate = () => {
     const updateCrewmate = async (event) => {
         event.preventDefault()
         await supabase
-            .from('Crewmmates')
+            .from('crewmate')
             .update({ name: Crewmate.name, speed: Crewmate.speed, color: Crewmate.color })
             .eq('id', id)
         window.location = "/"
@@ -32,7 +32,7 @@ const EditCrewmate = () => {
     const deleteCrewmate = async (event) => {
         event.preventDefault()
         await supabase
-            .from('Crewmmates')
+            .from('crewmate')
             .delete()
             .eq('id', id)
         window.location = "/"

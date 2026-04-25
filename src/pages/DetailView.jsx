@@ -9,7 +9,7 @@ const DetailView = () => {
     useEffect(() => {
         const fetchCrewmate = async () => {
             const { data } = await supabase
-                .from('Crewmmates')
+                .from('crewmate')
                 .select()
                 .eq('id', id)
                 .single()

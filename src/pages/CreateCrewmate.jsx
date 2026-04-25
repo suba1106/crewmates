@@ -11,7 +11,7 @@ const CreateCrewmate = () => {
         event.preventDefault();
 
         await supabase
-            .from('Crewmmates')
+            .from('crewmate')
             .insert({ name: Crewmate.name, speed: Crewmate.speed, color: Crewmate.color })
             .select();
 
